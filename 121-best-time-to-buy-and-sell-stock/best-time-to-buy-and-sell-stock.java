@@ -2,17 +2,19 @@ import java.util.ArrayList;
 
 class Solution {
     public int maxProfit(int[] prices) {
-        ArrayList<Integer> profitArray = new ArrayList<Integer>();
-        int stock = 0;
-        int minValue = prices[0];
-        int profit = 0;
+ int [] profitArray = new int[prices.length];
+        int stock=0;int minValue=prices[0];
+        int profit=0;
+        int j=0;
 
-        for (int i = 0; i < prices.length; i++) {
+
+        for (int i=0;i<prices.length;i++) {
 
             profit = prices[i] - minValue;
 
-            if (profit >= 0) {
-                profitArray.add(profit);
+            if(profit>=0) {
+                profitArray[j]=profit;
+                j++;
             }
 
             if (minValue > prices[i]) {
@@ -20,13 +22,9 @@ class Solution {
             }
 
         }
-        Collections.sort(profitArray, Collections.reverseOrder());
-        if(!profitArray.isEmpty()){
-        stock = profitArray.get(0);
-        }
-        else{
-            System.out.println("Index out of bound");
-        }
+        Arrays.sort(profitArray);
+        stock=profitArray[prices.length-1];
+
         return stock;
     }
 }
